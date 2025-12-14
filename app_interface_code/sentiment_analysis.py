@@ -2,11 +2,16 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import warnings
 import os
+import sys
+
+# Import de la configuration
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config import HF_MODEL_ID
 
 warnings.filterwarnings('ignore')
 
-# Configuration du chemin du modèle (relatif au dossier 'code final')
-MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'distilroberta_forex_final')
+# Configuration du chemin du modèle (Hugging Face Hub ou local)
+MODEL_PATH = HF_MODEL_ID
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 print(f"⏳ Chargement du modèle de sentiment depuis {MODEL_PATH}...")
@@ -20,7 +25,7 @@ try:
     print("✅ Modèle de sentiment chargé avec succès.")
 except Exception as e:
     print(f"❌ Erreur lors du chargement du modèle de sentiment : {e}")
-    print("Assurez-vous que le dossier 'distilroberta_forex_final' existe à la racine du projet.")
+    print(f"Assurez-vous que le modèle '{MODEL_PATH}' est accessible (Hugging Face ou local).")
 
 def get_sentiment_distilroberta(text):
     """

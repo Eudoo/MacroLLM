@@ -2,15 +2,16 @@ import pandas as pd
 import google.generativeai as genai
 import os
 import sys
+from huggingface_hub import hf_hub_download
 
 # Ajouter le dossier courant au path pour les imports si nécessaire
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from sentiment_analysis import get_sentiment_distilroberta
 from similarity_search import find_similar_events_v2
+from config import GEMINI_API_KEY, HF_DATASET_REPO_ID, HF_DATASET_FILENAME
 
 # Configuration Gemini
-GEMINI_API_KEY = "AIzaSyBExigWwXDNDc_J9X2wtQwvLimfIfX_jYA"
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Initialisation du modèle Gemini
@@ -20,19 +21,34 @@ model_gemini = genai.GenerativeModel(
 )
 
 # Chargement des données (Dataset avec embeddings)
-DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dataset_with_embeddings_distilroberta.pkl')
-print(f"⏳ Chargement du dataset depuis {DATA_PATH}...")
+print(f"⏳ Chargement du dataset...")
 
-if os.path.exists(DATA_PATH):
-    try:
-        data = pd.read_pickle(DATA_PATH)
-        print(f"✅ Dataset chargé : {len(data)} lignes")
-    except Exception as e:
-        print(f"❌ Erreur lors du chargement du dataset : {e}")
+try:
+    # Essayer de télécharger depuis Hugging Face
+    print(f"⬇️ Tentative de téléchargement depuis Hugging Face ({HF_DATASET_REPO_ID})...")
+    data_path = hf_hub_download(repo_id=HF_DATASET_REPO_ID, filename=HF_DATASET_FILENAME)
+    print(f"✅ Fichier téléchargé : {data_path}")
+    
+    data = pd.read_pickle(data_path)
+    print(f"✅ Dataset chargé : {len(data)} lignes")
+
+except Exception as e:
+    print(f"⚠️ Impossible de télécharger depuis Hugging Face : {e}")
+    print("🔄 Tentative de chargement local...")
+    
+    # Fallback local
+    LOCAL_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dataset_with_embeddings_distilroberta.pkl')
+    
+    if os.path.exists(LOCAL_DATA_PATH):
+        try:
+            data = pd.read_pickle(LOCAL_DATA_PATH)
+            print(f"✅ Dataset local chargé : {len(data)} lignes")
+        except Exception as local_e:
+            print(f"❌ Erreur lors du chargement du dataset local : {local_e}")
+            data = pd.DataFrame()
+    else:
+        print(f"❌ Erreur : Le fichier est introuvable localement ({LOCAL_DATA_PATH}) et sur Hugging Face.")
         data = pd.DataFrame()
-else:
-    print(f"❌ Erreur : Le fichier {DATA_PATH} est introuvable.")
-    data = pd.DataFrame()
 
 def generate_analysis_v2(news_text, similar_events_df, sentiment_result):
     """
