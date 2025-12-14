@@ -100,7 +100,7 @@ with col1:
     news_input = st.text_area(
         "Collez l'annonce ici (Format Forex Factory) :",
         placeholder="Ex: USD CPI m/m. Actual: 0.4%, Forecast: 0.2%. Usual Effect: Actual greater than Forecast is good for currency...",
-        height=150,
+        height=152,
         label_visibility="collapsed"
     )
 
