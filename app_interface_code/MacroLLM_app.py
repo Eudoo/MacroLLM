@@ -108,6 +108,7 @@ with col2:
     st.write("")
     st.write("")
     st.write("")
+    st.write("")
     analyze_btn = st.button("🚀 LANCER L'ANALYSE", use_container_width=True)
 
 # --- Zone de Résultats ---
