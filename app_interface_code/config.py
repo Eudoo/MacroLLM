@@ -28,7 +28,7 @@ import os
 try:
     GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 except (FileNotFoundError, KeyError):
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBExigWwXDNDc_J9X2wtQwvLimfIfX_jYA")
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # -----------------------------------------------------------------------------
 # CHEMINS DES DONNÉES
