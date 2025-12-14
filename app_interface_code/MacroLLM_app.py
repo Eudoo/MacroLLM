@@ -100,14 +100,14 @@ with col1:
     news_input = st.text_area(
         "Collez l'annonce ici (Format Forex Factory) :",
         placeholder="Ex: USD CPI m/m. Actual: 0.4%, Forecast: 0.2%. Usual Effect: Actual greater than Forecast is good for currency...",
-        height=120,
+        height=100,
         label_visibility="collapsed"
     )
 
 with col2:
-    st.write("")
-    st.write("")
-    st.write("")
+    st.markdown("### 📅 Contexte")
+    date_input = st.date_input("Date de l'annonce", value=pd.Timestamp.now())
+    st.markdown("<br>", unsafe_allow_html=True)
     analyze_btn = st.button("🚀 LANCER L'ANALYSE", use_container_width=True)
 
 # --- Zone de Résultats ---
