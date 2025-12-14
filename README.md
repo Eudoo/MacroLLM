@@ -1,4 +1,4 @@
-# 🌍 MacroLLM - Assistant Forex IA
+# MacroLLM - Assistant Forex IA
 
 **MacroLLM** est un assistant d'analyse Forex basé sur l'IA qui combine un modèle **DistilRoBERTa fine-tuné** et une architecture **RAG (Retrieval-Augmented Generation)** pour interpréter les événements macroéconomiques et générer des insights de trading via **Google Gemini**.
 
