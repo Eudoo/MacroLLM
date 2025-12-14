@@ -17,9 +17,18 @@ HF_DATASET_FILENAME = "dataset_with_embeddings_distilroberta.pkl"
 # -----------------------------------------------------------------------------
 # CONFIGURATION GEMINI
 # -----------------------------------------------------------------------------
-# Assurez-vous que cette clé est définie dans vos variables d'environnement
-# ou dans les secrets de Streamlit (.streamlit/secrets.toml) pour la sécurité.
-GEMINI_API_KEY = "AIzaSyBExigWwXDNDc_J9X2wtQwvLimfIfX_jYA"
+import streamlit as st
+import os
+
+# Gestion sécurisée de la clé API pour le déploiement
+# 1. Essaie de charger depuis les secrets Streamlit (Cloud)
+# 2. Sinon, utilise la variable d'environnement
+# 3. Sinon, utilise la clé en dur (Déconseillé en production publique)
+
+try:
+    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+except (FileNotFoundError, KeyError):
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBExigWwXDNDc_J9X2wtQwvLimfIfX_jYA")
 
 # -----------------------------------------------------------------------------
 # CHEMINS DES DONNÉES

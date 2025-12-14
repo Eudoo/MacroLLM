@@ -4,21 +4,23 @@ import pandas as pd
 import sys
 import os
 
-# Ajouter le dossier courant au path pour les imports
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-try:
-    from pipeline_RAG import analyze_forex_news_v2
-except ImportError:
-    st.error("Erreur : Impossible d'importer 'pipeline_RAG'. Assurez-vous que le fichier pipeline_RAG.py est dans le même dossier.")
-
 # --- Configuration de la page (Mode Large) ---
+# DOIT ETRE LA PREMIERE COMMANDE STREAMLIT
 st.set_page_config(
     page_title="MacroLLM - Forex Assistant",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Ajouter le dossier courant au path pour les imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from pipeline_RAG import analyze_forex_news_v2
+except ImportError as e:
+    st.error(f"Erreur critique : Impossible d'importer 'pipeline_RAG'.\n\nDétails : {e}")
+    st.stop()
 
 # --- CSS Personnalisé (Look Dashboard Financier) ---
 st.markdown("""
