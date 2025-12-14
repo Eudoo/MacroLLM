@@ -49,7 +49,6 @@ Le système suit un pipeline en 5 étapes pour analyser une annonce économique 
     ```bash
     pip install -r requirements.txt
     ```
-    *(Assurez-vous d'avoir un fichier requirements.txt ou installez manuellement : streamlit, pandas, torch, transformers, google-generativeai, scikit-learn)*
 
 3.  **Lancement de l'application** :
     ```bash
