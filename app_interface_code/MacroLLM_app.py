@@ -105,9 +105,6 @@ with col1:
     )
 
 with col2:
-    st.markdown("### 📅 Contexte")
-    date_input = st.date_input("Date de l'annonce", value=pd.Timestamp.now())
-    st.markdown("<br>", unsafe_allow_html=True)
     analyze_btn = st.button("🚀 LANCER L'ANALYSE", use_container_width=True)
 
 # --- Zone de Résultats ---
