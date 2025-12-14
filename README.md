@@ -13,25 +13,20 @@
 
 Le projet est structuré en plusieurs modules. Cliquez sur les liens pour accéder à la documentation détaillée de chaque partie.
 
-```
-MacroLLM/
-├── 📄 README.md (Ce fichier)
-├── 📄 requirements.txt .............. Dépendances Python
-├── 📂 app_interface_code/ ........... Code source de l'application et du pipeline
-│   ├── 📄 README.md ................. Documentation des scripts Python
-│   ├── 🐍 MacroLLM_app.py ........... Interface Streamlit
-│   ├── 🐍 pipeline_RAG.py ........... Logique RAG et intégration Gemini
-│   ├── 🐍 sentiment_analysis.py ..... Modèle de classification
-│   └── 🐍 similarity_search.py ...... Recherche vectorielle
-│
-├── 📂 Data/ ......................... Données du projet
-│   ├── 📄 README.md ................. Documentation du dataset
-│   └── 📊 Forex_data_corrected.csv .. Historique des annonces économiques
-│
-└── 📂 Notebooks/ .................... Expérimentation et Entraînement
-    ├── 📄 README.md ................. Documentation du processus d'entraînement
-    └── 📓 Construction_modele...ipynb Notebook de fine-tuning DistilRoBERTa
-```
+- 📄 **[README.md](README.md)** (Ce fichier)
+- 📄 **[requirements.txt](requirements.txt)** : Dépendances Python
+- 📂 **[app_interface_code/](app_interface_code/README.md)** : Code source de l'application et du pipeline
+  - 📄 **[README.md](app_interface_code/README.md)** : Documentation détaillée des scripts
+  - 🐍 [MacroLLM_app.py](app_interface_code/MacroLLM_app.py) : Interface Streamlit
+  - 🐍 [pipeline_RAG.py](app_interface_code/pipeline_RAG.py) : Logique RAG et intégration Gemini
+  - 🐍 [sentiment_analysis.py](app_interface_code/sentiment_analysis.py) : Modèle de classification
+  - 🐍 [similarity_search.py](app_interface_code/similarity_search.py) : Recherche vectorielle
+- 📂 **[Data/](Data/README.md)** : Données du projet
+  - 📄 **[README.md](Data/README.md)** : Documentation détaillée du dataset
+  - 📊 [Forex_data_corrected.csv](Data/Forex_data_corrected.csv) : Historique des annonces économiques
+- 📂 **[Notebooks/](Notebooks/README.md)** : Expérimentation et Entraînement
+  - 📄 **[README.md](Notebooks/README.md)** : Documentation détaillée du processus d'entraînement
+  - 📓 [Construction_modele_v2_DistilRoBERTa.ipynb](Notebooks/Construction_modele_v2_DistilRoBERTa.ipynb) : Notebook de fine-tuning DistilRoBERTa
 
 ---
 
